@@ -1,0 +1,58 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+.env/
+.env.*
+
+# Environment variables
+.env
+*.env
+
+# VS Code / IDE
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Python build files
+build/
+dist/
+*.egg-info/
+
+# SQLite / local DB
+*.db
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Pytest cache
+.pytest_cache/
+
+# Coverage reports
+.coverage
+htmlcov/
+
+# Static generated files (optional, only if needed)
+static/*.map
+
+# Node modules (if you add frontend tools later)
+node_modules/
+
+# Secrets / API keys
+*.pem
+*.key
+*.crt
+
+# Misc
+*.swp
+*.bak

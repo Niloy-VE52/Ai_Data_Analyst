@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AI-powered CSV data analytics assistant with interactive charts and insights" />
+  <title>Data Analytics Assistant</title>
+  <link rel="stylesheet" href="/static/style.css" />
+  <script src="https://cdn.plot.ly/plotly-2.35.0.min.js" charset="utf-8"></script>
+</head>
+<body>
+  <!-- Loading Overlay -->
+  <div id="loadingOverlay" class="loading-overlay hidden">
+    <div class="loader-ring"></div>
+    <div class="loader-text">Analyzing your data…</div>
+  </div>
+
+  <div class="app-layout">
+    <!-- ── Header ──────────────────────────────────────────── -->
+    <header class="header">
+      <div class="header-brand">
+        <div class="logo">📊</div>
+        <div>
+          <h1>Data Analytics Assistant</h1>
+          <span>Upload CSV · Instant Insights · Interactive Charts</span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <div class="theme-switcher">
+          <button class="theme-btn active" data-theme="dark" title="Dark">🌙 Dark</button>
+          <button class="theme-btn" data-theme="light" title="Light">☀️ Light</button>
+          <button class="theme-btn" data-theme="midnight" title="Midnight">🌌 Midnight</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- ── Sidebar ─────────────────────────────────────────── -->
+    <aside class="sidebar">
+      <div class="sidebar-section">
+        <h3>📁 Data Source</h3>
+        <div class="upload-area" id="uploadArea">
+          <span class="upload-icon">📄</span>
+          <p><strong>Click or drag</strong> a CSV file here</p>
+          <input type="file" id="fileInput" accept=".csv" />
+        </div>
+      </div>
+
+      <div id="fileInfo" class="sidebar-section hidden">
+        <div class="file-stats">
+          <span class="stat-icon">✅</span>
+          <div class="stat-info" id="fileStats"></div>
+        </div>
+      </div>
+
+      <div id="previewSection" class="sidebar-section hidden">
+        <h3>🔍 Data Preview</h3>
+        <div class="data-preview" id="dataPreview"></div>
+      </div>
+    </aside>
+
+    <!-- ── Main Content ────────────────────────────────────── -->
+    <main class="main-content">
+      <!-- Welcome state -->
+      <div id="welcomeState" class="welcome-state">
+        <span class="welcome-icon">📊</span>
+        <h2>Welcome to Data Analytics Assistant</h2>
+        <p>Upload a CSV file from the sidebar to get started with instant charts and AI-powered insights.</p>
+      </div>
+
+      <!-- Auto Charts -->
+      <div id="chartsSection" class="hidden">
+        <div class="section-header">
+          <span class="icon">📈</span>
+          <h2>Auto-generated Charts</h2>
+          <span class="badge" id="chartCount"></span>
+        </div>
+        <div class="charts-grid" id="chartsGrid"></div>
+      </div>
+
+      <!-- Errors -->
+      <div id="errorsSection" class="hidden"></div>
+
+      <!-- Chat Section -->
+      <div id="chatSection" class="chat-section hidden">
+        <div class="section-header">
+          <span class="icon">💬</span>
+          <h2>Ask Anything</h2>
+        </div>
+
+        <div class="chat-messages" id="chatMessages"></div>
+
+        <div class="chat-input-area">
+          <div class="chat-toggle-row">
+            <label class="toggle-switch">
+              <input type="checkbox" id="chartToggle" />
+              <span class="toggle-slider"></span>
+            </label>
+            <span class="toggle-label">📊 Explain answer with a chart</span>
+          </div>
+          <div class="chat-input-row">
+            <input
+              type="text"
+              id="chatInput"
+              class="chat-input"
+              placeholder="Ask for insights or say 'show me a chart of X vs Y'…"
+            />
+            <button class="send-btn" id="sendBtn" onclick="sendChat()">
+              Send ➤
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Deep Summary -->
+      <div id="deepSummarySection" class="deep-summary-section hidden">
+        <hr class="divider" />
+        <div class="section-header">
+          <span class="icon">🔍</span>
+          <h2>Deeper Summary</h2>
+        </div>
+        <div class="card" style="margin-top:12px">
+          <div class="card-body">
+            <div class="deep-summary-controls">
+              <select id="summarySelect"></select>
+              <button class="summary-btn" id="summaryBtn" onclick="getDeepSummary()">
+                📝 Get Deeper Summary
+              </button>
+            </div>
+            <div id="summaryResult"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
